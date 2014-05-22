@@ -28,7 +28,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         :docroot_dir => "/var/www/ec-site/html"
       },
       :php => {
-        :version => "5.3.10"
+        :version => "5.3",
+        :directives => {
+          :display_errors => 'On'
+        },
+        :packages => ["php-mbstring", "php-pgsql", "php-pear"]
       }
     }
   end
