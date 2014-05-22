@@ -1,7 +1,6 @@
 DEPENDENCIES
   apache2
   php
-  vim
 
 GRAPH
   apache2 (1.10.4)
@@ -23,7 +22,6 @@ GRAPH
     windows (>= 0.0.0)
     xml (>= 0.0.0)
     yum-epel (>= 0.0.0)
-  vim (1.1.2)
   windows (1.31.0)
     chef_handler (>= 0.0.0)
   xml (1.2.4)
