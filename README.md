@@ -1,22 +1,65 @@
-# 概要
+vagrant-lamp
+=============
 
-﻿CnetOS, Apache, MySQL, PHPの環境をVagrantで作ります。
+## 概要
 
-以下の記事で作成したものです。
+﻿CentOS, Apache, PostgreSQL::client, PHPの環境をVagrantで作ります。
 
-[vagrant + chef-solo で LAMP(PHP)の仮想環境を作成 - Qiita [キータ]](http://qiita.com/sampleb3/items/86d06b10989e58dc6dde)
+## 設定方法
 
+## 事前準備
 
-# 必要なアプリケーション
+### Vagrant のインストール
 
-- Vagrant
-- VirtualBox
-- Chef
-- Berkshelf
+1. <http://www.vagrantup.com/> からダウンロードしてインストール
+2. 必要なプラグインをインストールしておく
 
-# インストール方法
-
+```sh
+vagrant plugin install vagrant-omnibus
+sudo gem install nokogiri -- --use-system-libraries
+vagrant plugin install vagrant-berkshelf --plugin-version=2.0.1
 ```
-$ vagrant up
+
+### VirtualBox のインストール
+
+<https://www.virtualbox.org/> からダウンロードしてインストール
+
+### 起動
+
+```sh
+vagrant up
 ```
 
+### ssh 接続
+
+```sh
+vargrant ssh
+```
+
+### 設定変更する場合
+
+```sh
+vargrant provision
+```
+
+### 仮想マシンを破棄する場合
+
+```sh
+vargrant destroy
+```
+
+## 参考
+
+https://github.com/onehealth-cookbooks/apache2/tree/master
+https://github.com/onehealth-cookbooks/apache2/pulls
+
+http://www.vagrantbox.es
+
+https://github.com/mattandersen/vagrant-lamp/tree/master/chef/certificates
+
+http://tech.basicinc.jp/Vagrant/2014/02/02/vagrant_chef/
+
+http://qiita.com/sampleb3/items/86d06b10989e58dc6dde
+
+### 最近の記述の仕方
+http://qiita.com/joker1007/items/1b62e3a36b4f435c53a2
