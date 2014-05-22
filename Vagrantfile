@@ -12,12 +12,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box"
 
   config.vm.network :forwarded_port, guest: 80, host: 8082
-  config.vm.network :forwarded_port, guest: 3306, host: 8806
+  config.vm.network :forwarded_port, guest: 443, host: 8443
   config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777,fmode=666"]
 
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe     "apache2"
     chef.add_recipe     "apache2::mod_php5"
+    chef.add_recipe     "apache2::mod_ssl"
+    chef.add_recipe     "apache2::mod_rewrite"
     chef.add_recipe     "php"
     chef.add_recipe     "postgresql::client"
 
@@ -25,7 +27,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       :apache => {
         :version => "2.2",
         :default_site_enabled => true,
-        :docroot_dir => "/var/www/ec-site/html"
+        :docroot_dir => "/var/www/ec-site/html",
+        :listen_ports => [80, 443]
       },
       :php => {
         :version => "5.3",
