@@ -16,7 +16,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777,fmode=666"]
 
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "chef/cookbooks"
+    chef.log_level = :debug
+    chef.cookbooks_path = ["chef/cookbooks", "chef/site-cookbooks"]
+
     chef.roles_path = "chef/roles"
     chef.data_bags_path = "chef/data_bags"
 
@@ -27,6 +29,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe     "php"
     chef.add_recipe     "postgresql::client"
 
+    chef.run_list = ["recipe[apache2]", "recipe[apache2::mod_php5]",
+                     "recipe[apache2::mod_ssl]", "recipe[apache2::mod_rewrite]",
+                     "recipe[php]", "recipe[postgresql::client]"]
     chef.json = {
       :apache => {
         :version => "2.2",
