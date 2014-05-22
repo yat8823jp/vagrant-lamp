@@ -18,6 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe     "apache2"
     chef.add_recipe     "apache2::mod_php5"
     chef.add_recipe     "php"
+    chef.add_recipe     "postgresql::client"
 
     chef.json = {
       :apache => {

@@ -1,12 +1,14 @@
 DEPENDENCIES
   apache2
   php
+  postgresql
 
 GRAPH
   apache2 (1.10.4)
     iptables (>= 0.0.0)
     logrotate (>= 0.0.0)
     pacman (>= 0.0.0)
+  apt (2.4.0)
   build-essential (2.0.2)
   chef_handler (1.1.6)
   iis (2.1.2)
@@ -14,6 +16,7 @@ GRAPH
   iptables (0.13.2)
   logrotate (1.5.0)
   mysql (5.2.12)
+  openssl (1.1.0)
   pacman (1.1.1)
   php (1.4.6)
     build-essential (>= 0.0.0)
@@ -22,6 +25,10 @@ GRAPH
     windows (>= 0.0.0)
     xml (>= 0.0.0)
     yum-epel (>= 0.0.0)
+  postgresql (3.4.0)
+    apt (>= 1.9.0)
+    build-essential (>= 0.0.0)
+    openssl (>= 0.0.0)
   windows (1.31.0)
     chef_handler (>= 0.0.0)
   xml (1.2.4)
