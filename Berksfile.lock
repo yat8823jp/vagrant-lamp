@@ -1,5 +1,8 @@
 DEPENDENCIES
   apache2
+    git: https://github.com/nanasess/apache2.git
+    revision: b6e572af650229856aa86edcbe32a25f7ccaafae
+    branch: ssl-virtualhost
   php
   postgresql
 
