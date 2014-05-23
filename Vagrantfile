@@ -29,9 +29,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe     "php"
     chef.add_recipe     "postgresql::client"
 
-    chef.run_list = ["recipe[apache2]", "recipe[apache2::mod_php5]",
-                     "recipe[apache2::mod_ssl]", "recipe[apache2::mod_rewrite]",
-                     "recipe[php]", "recipe[postgresql::client]"]
     chef.json = {
       :apache => {
         :version => "2.2",
@@ -42,7 +39,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       :php => {
         :version => "5.3",
         :directives => {
-          :display_errors => 'On'
+          :display_errors => 'On',
+          "date.timezone" => "Asia/Tokyo",
         },
         :packages => ["php-mbstring", "php-pgsql", "php-pear"]
       }
@@ -51,5 +49,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.omnibus.chef_version = :latest
   config.berkshelf.enabled = true
-  
+
 end
