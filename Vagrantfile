@@ -5,13 +5,14 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  # config.vm.box = "CentOS-56-x64-packages-puppet-2.6.10-chef-0.10.6"
-  # config.vm.box_url = "https://dl.dropbox.com/u/7196/vagrant/CentOS-56-x64-packages-puppet-2.6.10-chef-0.10.6.box"
   config.vm.box = "chef/centos-6.5"
   config.vm.hostname = "centos"
+
+  # config.vm.box = "CentOS-56-x64-packages-puppet-2.6.10-chef-0.10.6"
+  # config.vm.box_url = "https://dl.dropbox.com/u/7196/vagrant/CentOS-56-x64-packages-puppet-2.6.10-chef-0.10.6.box"
   # config.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box"
 
-  config.vm.network :forwarded_port, guest: 80, host: 8082
+  config.vm.network :forwarded_port, guest: 80, host: 8888
   config.vm.network :forwarded_port, guest: 443, host: 8443
   config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777,fmode=666"]
 
@@ -50,4 +51,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.omnibus.chef_version = :latest
   config.berkshelf.enabled = true
 
+  config.vm.provision "shell", inline: "echo 'Congratulations!!! Install Success. Pleas
 end
