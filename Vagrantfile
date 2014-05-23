@@ -51,5 +51,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.omnibus.chef_version = :latest
   config.berkshelf.enabled = true
 
-  config.vm.provision "shell", inline: "echo 'Congratulations!!! Install Success. Pleas
+  config.vm.provision "shell", inline: "echo 'Congratulations!!! Install Success. Please access http://localhost:8888'"
 end
