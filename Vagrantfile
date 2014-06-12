@@ -5,7 +5,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "chef/centos-6.5"
+  config.vm.box = "nrel/CentOS-6.5-i386"
   config.vm.hostname = "centos"
 
   # config.vm.box = "CentOS-56-x64-packages-puppet-2.6.10-chef-0.10.6"
@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.network :forwarded_port, guest: 80, host: 8888
   config.vm.network :forwarded_port, guest: 443, host: 8443
-  config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777,fmode=666"]
+  config.vm.synced_folder ".", "/var/tmp/www", :mount_options => ["dmode=777,fmode=666"]
 
   config.vm.provision :chef_solo do |chef|
     chef.log_level = :debug
@@ -23,6 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.roles_path = "chef/roles"
     chef.data_bags_path = "chef/data_bags"
 
+    chef.add_recipe     "iptables::disabled"
     chef.add_recipe     "apache2"
     chef.add_recipe     "apache2::mod_php5"
     chef.add_recipe     "apache2::mod_ssl"
@@ -34,7 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       :apache => {
         :version => "2.2",
         :default_site_enabled => true,
-        :docroot_dir => "/var/www/ec-site/html",
+        :docroot_dir => "/var/tmp/www/ec-site/html",
         :listen_ports => [80, 443]
       },
       :php => {
@@ -48,8 +49,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
   end
 
-  config.omnibus.chef_version = :latest
-  config.berkshelf.enabled = true
+  config.omnibus.chef_version = '11.12.4'
+  # config.berkshelf.enabled = true
 
   config.vm.provision "shell", inline: "echo 'Congratulations!!! Install Success. Please access http://localhost:8888'"
 end

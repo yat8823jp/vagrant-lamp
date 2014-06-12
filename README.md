@@ -16,8 +16,6 @@ vagrant-lamp
 
 ```sh
 vagrant plugin install vagrant-omnibus
-sudo gem install nokogiri -- --use-system-libraries
-vagrant plugin install vagrant-berkshelf --plugin-version=2.0.1
 ```
 
 ### VirtualBox のインストール
