@@ -31,7 +31,9 @@ vagrant up
 ###vagrant-hostsupdaterインストール
 hostnameを変更するプラグインのインストール
 
+```sh
 vagrant plugin install vagrant-hostsupdater
+```
 
 config.vm.hostname = "ec.dev"の"ec.dev"を編集することでhostnameを自由に設定可能
 
