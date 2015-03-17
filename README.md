@@ -14,12 +14,6 @@ vagrant-lamp
 1. <http://www.vagrantup.com/> からダウンロードしてインストール
 2. 必要なプラグインをインストールしておく
 
-###vagrant-hostsupdaterインストール
-hostnameを変更するプラグインのインストール
-
-vagrant plugin install vagrant-hostsupdater
-
-
 ```sh
 vagrant plugin install vagrant-omnibus
 ```
@@ -33,6 +27,14 @@ vagrant plugin install vagrant-omnibus
 ```sh
 vagrant up
 ```
+
+###vagrant-hostsupdaterインストール
+hostnameを変更するプラグインのインストール
+
+vagrant plugin install vagrant-hostsupdater
+
+config.vm.hostname = "ec.dev"の"ec.dev"を編集することでhostnameを自由に設定可能
+
 
 ### ssh 接続
 
