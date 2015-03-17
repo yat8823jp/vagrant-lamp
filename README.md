@@ -14,6 +14,12 @@ vagrant-lamp
 1. <http://www.vagrantup.com/> からダウンロードしてインストール
 2. 必要なプラグインをインストールしておく
 
+###vagrant-hostsupdaterインストール
+hostnameを変更するプラグインのインストール
+
+vagrant plugin install vagrant-hostsupdater
+
+
 ```sh
 vagrant plugin install vagrant-omnibus
 ```

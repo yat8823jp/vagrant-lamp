@@ -16,14 +16,17 @@ sudo -u postgres createdb -U test_db_user -E utf-8 test_db
 # sudo -u vagrant pg_dump -h remote_host -U remote_db_user remote_db | psql -U test_db_user test_db
 ### END optional #########################
 
-echo 'Congratulations!!! Install Success. Please access http://localhost:8888'
+echo 'Congratulations!!! Install Success. Please access http://ec.dev'
 SCRIPT
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "nrel/CentOS-6.5-i386"
-  config.vm.hostname = "centos"
+  #config.vm.hostname = "centos"
+
+  #hostname 20150311
+  config.vm.hostname = "ec.dev"
 
   # config.vm.box = "CentOS-56-x64-packages-puppet-2.6.10-chef-0.10.6"
   # config.vm.box_url = "https://dl.dropbox.com/u/7196/vagrant/CentOS-56-x64-packages-puppet-2.6.10-chef-0.10.6.box"
@@ -31,6 +34,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.network :forwarded_port, guest: 80, host: 8888
   config.vm.network :forwarded_port, guest: 443, host: 8443
+
+  #hostname 20150311
+  config.vm.network :private_network, ip: "192.168.33.250"
+
   config.vm.synced_folder ".", "/var/tmp/www", :mount_options => ["dmode=777,fmode=666"]
 
   config.vm.provision :chef_solo do |chef|
